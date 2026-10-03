@@ -1,0 +1,32 @@
+# ASCII labels work with Apple Terminal's existing font.
+add_newline = true
+format = '$directory$git_branch$git_status$nodejs$python$rust$golang$cmd_duration$line_break$character'
+
+[directory]
+style = 'bold cyan'
+truncation_length = 3
+read_only = ' read-only'
+
+[git_branch]
+symbol = 'git:'
+style = 'bold purple'
+
+[git_status]
+style = 'bold yellow'
+
+[nodejs]
+symbol = 'node:'
+
+[python]
+symbol = 'py:'
+
+[rust]
+symbol = 'rs:'
+
+[golang]
+symbol = 'go:'
+
+[character]
+success_symbol = '[>](bold green)'
+error_symbol = '[>](bold red)'
+vimcmd_symbol = '[<](bold green)'
