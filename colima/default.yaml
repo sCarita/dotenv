@@ -1,0 +1,8 @@
+# Conservative starting resources; adjust memory to 8 GiB for larger workloads.
+cpu: 4
+memory: 4
+disk: 20
+arch: host
+runtime: docker
+vmType: vz
+mountType: virtiofs
