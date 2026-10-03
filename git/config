@@ -1,0 +1,10 @@
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[alias]
+	st = status -sb
+	df = diff
+	ds = diff --staged
+	lg = log --oneline --graph --decorate -20
+	last = log -1 --stat
