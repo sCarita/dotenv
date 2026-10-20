@@ -169,3 +169,15 @@ here, along with the relevant scripts or Brewfile changes.
   override, and fallback to Desert when a requested theme is unavailable.
 - Bash syntax and Git whitespace checks passed. The installer and documentation
   are committed with the Vim configuration.
+
+## 2026-10-20 — Vim file sidebar
+
+- Configured Vim's built-in netrw browser as a tree with a 25% left sidebar.
+  Opening one directory with `vim .` or `vim path/to/folder` creates the sidebar
+  and an empty editing pane; opening a file keeps the usual single-pane layout.
+- Added leader+e (backslash then e by default) to toggle `:Lexplore`.
+- Installed the updated configuration with `./setup.sh --only vim`.
+  No packages or external plugins were needed.
+- Headless checks passed for two-pane startup, editor focus, toggling the
+  sidebar, opening a tree-selected file into the editor, and single-file startup.
+  Verified the installed configuration and checked Git whitespace.

@@ -35,7 +35,7 @@ Git is part of the package list and can be used to clone the repository afterwar
 - `scripts/homebrew.sh`: installs Homebrew if missing and adds its environment to `~/.zprofile`.
 - `scripts/apps.sh`: installs the packages in `Brewfile`.
 - `scripts/vscode.sh`: merges the versioned VS Code theme into user settings.
-- `scripts/vim.sh` and `vim/config.vim`: install native dark Vim colors.
+- `scripts/vim.sh` and `vim/config.vim`: install native dark Vim colors and a file sidebar.
 - `scripts/extensions.sh` and `vscode/extensions.txt`: install the selected editor extensions.
 - `scripts/development.sh`: provisions managed runtimes and Docker/Colima configuration.
 - `shell/development.zsh`: nvm initialization and architecture-aware development paths.
@@ -288,7 +288,7 @@ References: [uv](https://docs.astral.sh/uv/getting-started/installation/),
 [nvm](https://github.com/nvm-sh/nvm#installing-and-updating), and
 [Node release status](https://nodejs.org/en/about/previous-releases).
 
-## Vim colors
+## Vim colors and file sidebar
 
 Vim uses the built-in **Habamax** dark theme with syntax highlighting. It works
 with Apple Terminal's indexed colors, without enabling true color or requiring
@@ -322,6 +322,18 @@ let g:dotenv_vim_colorscheme = 'slate'
 ```
 
 To change the repository default, edit `vim/config.vim` and rerun the Vim step.
+
+Open a project folder with `vim .` (or `vim path/to/project`) to get a file
+tree on the left and an empty editing pane on the right. This uses Vim's
+built-in **netrw** browser; no plugins are required. Opening a file directly
+with `vim filename` keeps the usual single editor pane.
+
+- Press **Ctrl+W**, then **h** or **l** to move between the left and right panes.
+- In the tree, use **j/k** to move and **Enter** to expand a directory or open
+  a file in the editing pane.
+- Press **backslash**, then **e** (`\\e`) to toggle the sidebar, or use `:Lexplore`.
+  If you have a custom Vim leader key, use that key followed by `e` instead.
+- Save with `:w` and quit all panes with `:qa` (Vim asks you to save modified files).
 
 ## VS Code theme
 

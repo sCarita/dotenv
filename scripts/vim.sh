@@ -3,7 +3,7 @@ set -euo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
 require_macos
 
-log 'Installing Vim dark color scheme configuration.'
+log 'Installing Vim colors and file sidebar configuration.'
 vim_dir="$HOME/.vim"
 vimrc="$HOME/.vimrc"
 source_line='source ~/.vim/dotenv.vim'
