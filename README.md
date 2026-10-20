@@ -35,6 +35,7 @@ Git is part of the package list and can be used to clone the repository afterwar
 - `scripts/homebrew.sh`: installs Homebrew if missing and adds its environment to `~/.zprofile`.
 - `scripts/apps.sh`: installs the packages in `Brewfile`.
 - `scripts/vscode.sh`: merges the versioned VS Code theme into user settings.
+- `scripts/vim.sh` and `vim/config.vim`: install native dark Vim colors.
 - `scripts/extensions.sh` and `vscode/extensions.txt`: install the selected editor extensions.
 - `scripts/development.sh`: provisions managed runtimes and Docker/Colima configuration.
 - `shell/development.zsh`: nvm initialization and architecture-aware development paths.
@@ -47,7 +48,7 @@ Git is part of the package list and can be used to clone the repository afterwar
 
 Run a single step with `./setup.sh --only ssh`, `--only shell`,
 `--only angry-ip-scanner`, `--only homebrew`, `--only apps`, `--only development`,
-`--only git`, `--only vscode`, or `--only extensions`.
+`--only git`, `--only vim`, `--only vscode`, or `--only extensions`.
 All steps can be rerun. Existing SSH configuration is preserved, and the Homebrew
 shell line is only appended if absent. Package installation uses `--no-upgrade`
 so a rerun does not upgrade existing packages. It does not remove extra packages.
@@ -286,6 +287,41 @@ References: [uv](https://docs.astral.sh/uv/getting-started/installation/),
 [Colima](https://colima.run/docs/installation/),
 [nvm](https://github.com/nvm-sh/nvm#installing-and-updating), and
 [Node release status](https://nodejs.org/en/about/previous-releases).
+
+## Vim colors
+
+Vim uses the built-in **Habamax** dark theme with syntax highlighting. It works
+with Apple Terminal's indexed colors, without enabling true color or requiring
+plugins, fonts, downloads, or a Homebrew Vim installation. The macOS Vim already
+includes it; older Vim releases fall back to **Desert** if the theme is unavailable.
+
+```sh
+./setup.sh --only vim --dry-run
+./setup.sh --only vim
+```
+
+The installer copies `vim/config.vim` to `~/.vim/dotenv.vim` and appends one
+source line to `~/.vimrc`. Existing settings are preserved and the previous
+`.vimrc` is backed up before its first change. Reruns do not duplicate the source
+line. Existing symlinks at either managed file are left unchanged with an error.
+Reopen Vim or run `:source ~/.vimrc` to apply the settings.
+
+Try these commands inside Vim to switch themes for the current session:
+
+```vim
+:colorscheme habamax
+:colorscheme slate
+:colorscheme desert
+```
+
+For a persistent personal choice, put this **before** the managed source line
+in `~/.vimrc`:
+
+```vim
+let g:dotenv_vim_colorscheme = 'slate'
+```
+
+To change the repository default, edit `vim/config.vim` and rerun the Vim step.
 
 ## VS Code theme
 

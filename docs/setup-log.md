@@ -155,3 +155,17 @@ here, along with the relevant scripts or Brewfile changes.
   and staged whitespace before committing.
 - Machine credentials, private keys, runtime state, and personal configuration
   remain outside the repository. No remote repository or push was requested.
+
+## 2026-10-20 — Vim color schemes
+
+- Added `vim/config.vim` and the `--only vim` setup step. The default Habamax
+  dark theme enables syntax highlighting; Slate and Desert are documented
+  alternatives. Themes are bundled with macOS Vim, so no package downloads or
+  plugins were necessary. True color is not forced on Apple Terminal.
+- Installed the configuration to `~/.vim/dotenv.vim` and enabled it in `~/.vimrc`.
+- Verified the installed theme, dark background, and syntax highlighting in
+  headless Vim. Isolated checks passed for dry runs, preserving existing settings,
+  backing up `.vimrc`, reruns without duplicate source lines, a personal theme
+  override, and fallback to Desert when a requested theme is unavailable.
+- Bash syntax and Git whitespace checks passed. The installer and documentation
+  are committed with the Vim configuration.
