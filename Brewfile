@@ -30,6 +30,7 @@ cask "gcloud-cli"
 cask "visual-studio-code"
 cask "discord"
 cask "chatgpt-classic"
+cask "tailscale-app"
 # Installed separately by scripts/angry-ip-scanner.sh; Homebrew disables this cask.
 # https://formulae.brew.sh/cask/angry-ip-scanner
 # cask "angry-ip-scanner"

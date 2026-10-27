@@ -181,3 +181,15 @@ here, along with the relevant scripts or Brewfile changes.
 - Headless checks passed for two-pane startup, editor focus, toggling the
   sidebar, opening a tree-selected file into the editor, and single-file startup.
   Verified the installed configuration and checked Git whitespace.
+
+## 2026-10-27 — Tailscale
+
+- Added the `tailscale-app` Homebrew cask and documented local sign-in and
+  macOS extension/VPN approval steps using Tailscale's official macOS guide.
+- Downloaded version 1.104.2 and attempted installation. The package installer
+  requested an administrator password; the unattended run was interrupted.
+- `/Applications/Tailscale.app` is absent, so installation is not complete.
+  Homebrew retained its staged cask record; finish in a local terminal with
+  `brew reinstall --cask tailscale-app`, entering the password there.
+- Git whitespace checks passed. No Tailscale credentials were saved or tailnet
+  authentication attempted.

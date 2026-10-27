@@ -168,7 +168,7 @@ The starting package list is Git, GitHub CLI, ripgrep, jq, and wget. Add one
 `brew "package-name"` per command line tool or `cask "app-name"` per desktop app
 to `Brewfile`, then rerun the apps step.
 
-Desktop apps are Visual Studio Code, Discord, and ChatGPT Classic. Angry IP
+Desktop apps are Visual Studio Code, Discord, ChatGPT Classic, and Tailscale. Angry IP
 Scanner is recorded as a commented entry because its
 [Homebrew cask is disabled](https://formulae.brew.sh/cask/angry-ip-scanner).
 The setup installs its [official download](https://angryip.org/download/)
@@ -195,6 +195,29 @@ brew bundle install --file=Brewfile
 The manifest tracks package names, not fixed versions. Future installations use
 the versions available from Homebrew at that time. Authentication (`gh auth
 login`, SSH service access) is done separately and kept out of this repository.
+
+## Tailscale
+
+The Brewfile installs Tailscale's standalone macOS app with `tailscale-app`.
+It uses the native menu-bar interface and is separate from the Homebrew
+command-line-only `tailscale` formula. Installation may request administrator
+authentication because the app uses a package installer.
+
+```sh
+./setup.sh --only apps
+# To install just Tailscale:
+brew install --cask tailscale-app
+```
+
+If installation is interrupted at the administrator-password prompt, Homebrew
+may retain a cask record even though the app is missing. Finish in a local
+terminal with `brew reinstall --cask tailscale-app` in that case.
+
+After installation, open **Tailscale** from Applications, approve the macOS
+network/system extension and VPN configuration when prompted, and sign in to
+your Tailscale account. Tailnet membership and authentication remain local;
+no auth keys or account information belong in this repo. See the
+[official macOS installation guide](https://tailscale.com/docs/install/mac).
 
 ## Development tools from the previous-machine audit
 
