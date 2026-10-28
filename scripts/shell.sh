@@ -7,6 +7,7 @@ log 'Installing zsh preferences, aliases, colors, and tool integrations.'
 config_dir="$HOME/.config/dotenv"
 run mkdir -p "$config_dir"
 run cp "$REPO_DIR/starship/starship.toml" "$config_dir/starship.toml"
+run cp "$REPO_DIR/codex/tui-overrides.conf" "$config_dir/codex-tui-overrides.conf"
 
 # Respect a custom zsh startup directory and preserve existing configuration.
 zsh_dir="${ZDOTDIR:-$HOME}"

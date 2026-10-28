@@ -12,10 +12,19 @@ alias code='"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/cod
 
 # Launch the Codex TUI in the current folder; pass prompts/flags unchanged.
 codex-tui() {
+  local override
+  local -a tui_args=()
+  # Versioned keyboard preferences, applied only to launches through this helper.
+  if [[ -r "$HOME/.config/dotenv/codex-tui-overrides.conf" ]]; then
+    while IFS= read -r override || [[ -n "$override" ]]; do
+      [[ -n "$override" && "$override" != \#* ]] || continue
+      tui_args+=(-c "$override")
+    done < "$HOME/.config/dotenv/codex-tui-overrides.conf"
+  fi
   if (( $+commands[codex] )); then
-    command codex "$@"
+    command codex "${tui_args[@]}" "$@"
   elif [[ -x '/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex' ]]; then
-    '/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex' "$@"
+    '/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex' "${tui_args[@]}" "$@"
   else
     print -u2 'Codex CLI not found. Install Codex CLI or the ChatGPT desktop app, then try again.'
     return 127

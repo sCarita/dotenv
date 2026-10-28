@@ -203,3 +203,18 @@ here, along with the relevant scripts or Brewfile changes.
 - Verified zsh syntax, Git whitespace, and argument forwarding with `cx --version`
   using both normal PATH resolution and the app fallback. Both reported
   `codex-cli 0.165.0-alpha.1.2`. No interactive agent session was started.
+
+## 2026-10-28 — Codex newline key bindings
+
+- Added `codex/tui-overrides.conf` with Shift+Enter, Alt+Enter, and Ctrl+J newline
+  bindings. The shell step installs it, and `cx`/`codex-tui` pass it to Codex
+  without modifying the user's Codex config file.
+- Added a local single-key diagnostic helper. The user ran it in Apple Terminal
+  and confirmed physical Shift+Enter produces `b'\r'` (hex `0d`) on macOS 26.5.2.
+  This is indistinguishable from ordinary Enter at the CLI input boundary.
+- Validated the keymap with Codex's strict config loader and tested Meta+Return
+  as a newline in a temporary TUI session. No prompt was submitted. The session
+  was then closed. Argument-forwarding and shell syntax checks also passed.
+- Installed the preset and launcher. Ctrl+J remains the working fallback in
+  Apple Terminal; physical Shift+Enter support is still pending a terminal that
+  reports that key distinctly. No Terminal profiles were changed.

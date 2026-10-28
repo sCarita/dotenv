@@ -119,6 +119,32 @@ with `./setup.sh --only shell`, then open a new terminal or run `source ~/.zshrc
 Running Codex without a subcommand launches the TUI, as described in the
 [official OpenAI CLI reference](https://learn.chatgpt.com/docs/cli/reference).
 
+### Multiline prompts
+
+`codex/tui-overrides.conf` stores the newline key bindings used by `cx` and
+`codex-tui`: Shift+Enter, Alt+Enter, and Ctrl+J. The shell installer copies it to
+`~/.config/dotenv/codex-tui-overrides.conf`; the launcher passes each setting
+with `-c`, preserving your existing Codex config file. Running `codex` directly
+does not load these repo-managed overrides. An explicit `-c` supplied to `cx`
+afterward can override the same setting.
+
+Shift+Enter requires the terminal to report it distinctly. On this Mac's
+macOS 26.5.2 Apple Terminal, a physical-key test returned `0d` for Shift+Enter,
+the same carriage-return byte as Enter. A Codex keymap alone cannot distinguish
+those keys. Ctrl+J is the reliable newline shortcut in that terminal. The preset
+also accepts Alt+Enter when the terminal sends Meta+Return (`1b 0d`).
+
+To diagnose another terminal locally, run this and press Shift+Enter once:
+
+```sh
+python3 scripts/terminal-key.py
+```
+
+The helper temporarily switches input to raw mode, prints the key bytes, restores
+the terminal settings, and saves nothing. Ctrl+C cancels the check. The keymap
+setting is supported by the
+[official OpenAI configuration reference](https://learn.chatgpt.com/docs/config-file/config-reference).
+
 ## Terminal colors
 
 `shell/colors.zsh` enables native macOS colors for `ls`, `ll`, and `la`:
