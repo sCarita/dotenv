@@ -10,6 +10,19 @@ alias ....='cd ../../..'
 # VS Code CLI: `code .` opens the current project; other CLI arguments work too.
 alias code='"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"'
 
+# Launch the Codex TUI in the current folder; pass prompts/flags unchanged.
+codex-tui() {
+  if (( $+commands[codex] )); then
+    command codex "$@"
+  elif [[ -x '/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex' ]]; then
+    '/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex' "$@"
+  else
+    print -u2 'Codex CLI not found. Install Codex CLI or the ChatGPT desktop app, then try again.'
+    return 127
+  fi
+}
+alias cx='codex-tui'
+
 # Git inspection.
 alias gs='git status -sb'
 alias gd='git diff'

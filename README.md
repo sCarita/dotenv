@@ -83,6 +83,7 @@ replacement for inspecting staged changes.
 | `...` | `cd ../..` | Go up two directories |
 | `....` | `cd ../../..` | Go up three directories |
 | `code .` | VS Code's bundled command line launcher | Open the current folder in VS Code |
+| `cx` | `codex-tui` | Open the Codex terminal UI in the current folder |
 | `gs` | `git status -sb` | Compact Git status with branch |
 | `gd` | `git diff` | Unstaged changes |
 | `gds` | `git diff --staged` | Staged changes |
@@ -96,6 +97,27 @@ Open a new terminal or run `source ~/.zshrc` to load them into the current one.
 
 On macOS, the `-g` flag in `ll` hides the owner column. Use `ls -lha` instead
 if you want to see file owners as well.
+
+## Codex terminal shortcut
+
+Run `cx` (or `codex-tui`) from a project directory to open Codex's interactive
+terminal UI. Prompts and CLI options pass through unchanged:
+
+```sh
+cx
+cx "Explain this project"
+cx --help
+```
+
+The shortcut uses `codex` from your shell PATH first, with a fallback to the CLI
+bundled in the installed `/Applications/ChatGPT.app`. The bundle path is specific
+to this app layout; if a future app update changes it, install the standalone CLI
+on PATH or update the fallback. No model, permission, or sandbox settings are
+overridden. Sign in through the CLI if prompted. Refresh the installed shortcut
+with `./setup.sh --only shell`, then open a new terminal or run `source ~/.zshrc`.
+
+Running Codex without a subcommand launches the TUI, as described in the
+[official OpenAI CLI reference](https://learn.chatgpt.com/docs/cli/reference).
 
 ## Terminal colors
 

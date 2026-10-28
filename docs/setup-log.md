@@ -193,3 +193,13 @@ here, along with the relevant scripts or Brewfile changes.
   `brew reinstall --cask tailscale-app`, entering the password there.
 - Git whitespace checks passed. No Tailscale credentials were saved or tailnet
   authentication attempted.
+
+## 2026-10-28 — Codex terminal shortcut
+
+- Added and installed `cx`, an alias for `codex-tui`, which launches the Codex
+  interactive terminal UI in the current directory and forwards supplied args.
+- The launcher prefers `codex` on PATH and falls back to the CLI bundled with
+  the installed ChatGPT desktop app. Model and permission settings are unchanged.
+- Verified zsh syntax, Git whitespace, and argument forwarding with `cx --version`
+  using both normal PATH resolution and the app fallback. Both reported
+  `codex-cli 0.165.0-alpha.1.2`. No interactive agent session was started.
